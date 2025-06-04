@@ -13,12 +13,10 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <button className="logo-button">
-          <div className="flex justify-center mb-10 ">
                         <img
-                            src=" https://ik.imagekit.io/yjyy0thaz/neorh.webp?updatedAt=1749057531445"
+                            src="./src/assets/logo/neorh-logo-nav-bar.png"
                             alt="Logo Neo RH"
-                className="w-10 h-10" />
-          </div>
+                className="logo-imagem" />
         </button>
 
         <div className="nav-center">
@@ -34,7 +32,7 @@ const Navbar = () => {
         </div>
 
         <button className="user-info-button">
-          Informações do Usuário
+          Logout
         </button>
 
         <button 

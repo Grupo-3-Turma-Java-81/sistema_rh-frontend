@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #FFFFFF;
+  background-color: #00070D;
   box-shadow: 0 2px 4px rgba(0, 7, 13, 0.1);
   position: fixed;
   top: 0;
@@ -21,6 +21,11 @@
   width: 100%;
 }
 
+.logo-imagem {
+  height: 60px;
+  object-fit: contain;
+}
+
 .logo-button {
   background: none;
   border: none;
@@ -36,27 +41,6 @@
   transform: scale(1.05);
 }
 
-.diamond-logo {
-  width: 50px;
-  height: 50px;
-  transform: rotate(45deg);
-  overflow: hidden;
-  background: #00070D;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-}
-
-.logo-img {
-  width: 140%;
-  height: 140%;
-  transform: rotate(-45deg) scale(0.6);
-  object-fit: contain;
-  filter: brightness(0) invert(1);
-  padding: 6px;
-}
-
 .nav-center {
   position: absolute;
   left: 50%;
@@ -67,8 +51,8 @@
 }
 
 .nav-button {
-  background-color: #00070D;
-  color: #FFFFFF;
+  background-color: #FFFFFF;
+  color: #00070D;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 4px;
@@ -88,7 +72,7 @@
 }
 
 .nav-button:last-child:hover {
-  background-color: #00070D;
+  background-color: #FFFFFF;
 }
 
 .user-info-button {
