@@ -1,0 +1,23 @@
+.fundoCadastro {
+  background-image: url("https://ik.imagekit.io/9lt9gebdr/pessoas-usando-dispositivo-digital-durante-uma-reuniao.jpg?updatedAt=1749061492728");
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: -1;
+}
