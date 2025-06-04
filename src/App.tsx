@@ -1,3 +1,4 @@
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Login from "./pages/login/Login";
@@ -11,6 +12,7 @@ function App() {
         <BrowserRouter>
           <div className="min-h-[80vh]">
             <Routes>
+              <HomeRH />
               <Route path="/" element={<Login />} />
               <Route path="/cadastro" element={<Cadastro />} />
             </Routes>
@@ -18,6 +20,7 @@ function App() {
         </BrowserRouter>
       </AuthProvider>
     </>
+
   );
 }
 
