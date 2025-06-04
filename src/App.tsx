@@ -1,23 +1,30 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import './App.css'
-import HomeEmpregado from './pages/HomeEmprega/HomeEmpregado'
+
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Login from "./pages/login/Login";
+import Cadastro from "./pages/cadastro/Cadastro";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
-
-
   return (
-    <BrowserRouter>
-      <div className="min-h-screen flex flex-col">
-        
-        <main className="flex-1 pt-16">
-          <Routes>
-            <Route path="/" element={<HomeEmpregado />} />
-          </Routes>
-        </main>
-        
-      </div>
-    </BrowserRouter>
-  )
+
+    <>
+      <AuthProvider>
+        <BrowserRouter>
+          <div className="min-h-[80vh]">
+            <Routes>
+              <HomeRH />
+              <Route path="/" element={<Login />} />
+              <Route path="/cadastro" element={<Cadastro />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </AuthProvider>
+    </>
+
+  );
+
 }
 
-export default App
+export default App;
