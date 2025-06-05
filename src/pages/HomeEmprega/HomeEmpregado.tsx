@@ -9,14 +9,12 @@ export default function HomeEmpregado() {
   return (
     <div className="min-h-screen w-full bg-[#F2F2F2]">
       <main className="px-8 py-6 space-y-6">
-        {/* Breadcrumbs */}
         <div className="flex items-center space-x-2 text-sm text-[#81868C]">
           <span>Home</span>
           <span>/</span>
           <span className="text-[#00070D]">Área do Funcionário</span>
         </div>
 
-        {/* Área de Busca Simplificada */}
         <div className="bg-white p-4 rounded-lg shadow-sm border border-[#81868C]">
           <div className="relative w-full max-w-md">
             <input
@@ -36,10 +34,8 @@ export default function HomeEmpregado() {
           </div>
         </div>
 
-        {/* Card do Usuário Aprimorado */}
         <CardInfo />
 
-        {/* Card de Informações de Pagamentos Aprimorado */}
         <div className="bg-white border border-[#81868C] rounded-lg shadow-sm">
           <div className="border-b border-[#81868C] px-6 py-4 bg-[#F2F2F2] flex justify-between items-center">
             <h2 className="text-lg font-semibold text-[#00070D]">Informações de Pagamentos</h2>
