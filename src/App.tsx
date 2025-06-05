@@ -6,6 +6,8 @@ import Login from "./pages/login/Login";
 import Cadastro from "./pages/cadastro/Cadastro";
 import HomeRH from "./pages/homeRH/HomeRH";
 import { AuthProvider } from "./contexts/AuthContext";
+import Sobre from "./pages/sobre/Sobre";
+
 
 function App() {
   return (
@@ -16,10 +18,11 @@ function App() {
           <Navbar />
           <main className="flex-grow">
             <Routes>
-              <Route path="/" element={<Login />} />
+              <Route path="/" element={<HomeRH />} />
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="/home" element={<HomeRH />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/sobre" element={<Sobre />} />
             </Routes>
           </main>
           <Footer />
