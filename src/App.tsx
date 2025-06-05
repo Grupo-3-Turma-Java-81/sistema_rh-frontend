@@ -7,6 +7,7 @@ import Cadastro from "./pages/cadastro/Cadastro";
 import HomeRH from "./pages/homeRH/HomeRH";
 import { AuthProvider } from "./contexts/AuthContext";
 import Sobre from "./pages/sobre/Sobre";
+import ListaPagamentos from './components/pagamentos/ListarPagamentos/ListarPagamentos';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
               <Route path="/home" element={<HomeRH />} />
               <Route path="/login" element={<Login />} />
               <Route path="/sobre" element={<Sobre />} />
+              <Route path="/pagamentos" element={<ListaPagamentos />} />
             </Routes>
           </main>
           <Footer />
