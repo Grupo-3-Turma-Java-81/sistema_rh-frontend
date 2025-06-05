@@ -1,82 +1,108 @@
-import { useContext, useState, type ChangeEvent, type FormEvent } from "react";
+import { useContext, useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import type Pagamento from "../../../models/Pagamento";
-import { cadastrar } from "../../../services/Service";
+import { atualizar, buscar, cadastrar } from "../../../services/Service";
 import { AuthContext } from "../../../contexts/AuthContext";
 import '../../../css/Form.css';
-
-
+import { useNavigate, useParams } from "react-router-dom";
 
 const FormPagamento: React.FC = () => {
   const { usuario } = useContext(AuthContext);
-  const token = usuario.token;
+  const token = usuario?.token ?? "";
+  const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
 
-const [pagamento, setPagamento] = useState<{
-  descricao: string;
-  salarioBaseHora: string;
-  mesReferencia: string;
-  horasTotais: string;
-  funcionario: { id: number };
-  descontos: string;
-  valorFinal: string;
-  bonus: string;
-}>({
-  descricao: '',
-  salarioBaseHora: '',
-  mesReferencia: '',
-  horasTotais: '',
-  funcionario: { id: 0 },
-  descontos: '0',
-  valorFinal: '0',
-  bonus: '0',
-});
+  
+  console.log("este é o token", token);
+
+  const [pagamento, setPagamento] = useState<{
+    descricao: string;
+    salarioBaseHora: string;
+    mesReferencia: string;
+    horasTotais: string;
+    funcionario: { id: number };
+    descontos: string;
+    valorFinal: string;
+    bonus: string;
+  }>({
+    descricao: '',
+    salarioBaseHora: '',
+    mesReferencia: '',
+    horasTotais: '',
+    funcionario: { id: 0 },
+    descontos: '0',
+    valorFinal: '0',
+    bonus: '0',
+  });
+
+const [isLoading, setIsLoading] = useState(false);
 
 
-  const [resultado, setResultado] = useState<Pagamento | null>(null);
-  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    if (!token) {
+      alert("Usuário não autenticado");
+      navigate("/login");
+      return;
+    }
+
+    if (id) {
+      buscar(`/pagamentos/${id}`, setPagamento, {
+        headers: { Authorization: token },
+      }).catch(() => alert("Erro ao carregar pagamento"));
+    }
+  }, [id, token, navigate]);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
 
-    if (name === 'funcionarioId') {
-      setPagamento(prev => ({
+    if (name === "funcionarioId") {
+      setPagamento((prev) => ({
         ...prev,
-        funcionario: {
-          id: Number(value)
-        }
+        funcionario: { id: Number(value) },
+      }));
+    } else if (
+      name === "salarioBaseHora" ||
+      name === "horasTotais"
+    ) {
+      setPagamento((prev) => ({
+        ...prev,
+        [name]: Number(value),
       }));
     } else {
-      setPagamento(prev => ({
+      setPagamento((prev) => ({
         ...prev,
-        [name]: value
+        [name]: value,
       }));
     }
   }
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    setLoading(true);
+
+    if (!token) {
+      alert("Usuário não autenticado");
+      return;
+    }
+
+    setIsLoading(true);
 
     try {
-      await cadastrar(
-        '/pagamentos',
-        {
-          ...pagamento,
-          salarioBaseHora: Number(pagamento.salarioBaseHora),
-          horasTotais: Number(pagamento.horasTotais),
-        },
-        setResultado,
-        {
-          headers: {
-            Authorization: token,
-          }
-        }
-      );
-      alert('Pagamento cadastrado com sucesso!');
+      if (id) {
+        await atualizar(`/pagamentos/${id}`, pagamento, setPagamento, {
+          headers: { Authorization: token },
+        });
+        alert("Pagamento atualizado com sucesso!");
+      } else {
+        await cadastrar("/pagamentos", pagamento, setPagamento, {
+          headers: { Authorization: token },
+        });
+        alert("Pagamento cadastrado com sucesso!");
+      }
+      navigate("/pagamentos");
     } catch (error) {
-      alert('Erro ao cadastrar pagamento');
+      alert("Erro ao salvar pagamento");
       console.error(error);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   }
 
@@ -127,8 +153,8 @@ const [pagamento, setPagamento] = useState<{
         required
         className="input-field"
       />
-      <button type="submit" disabled={loading} className="submit-button">
-        {loading ? 'Enviando...' : 'Cadastrar Pagamento'}
+      <button type="submit" disabled={isLoading} className="submit-button">
+        {isLoading ? 'Enviando...' : 'Cadastrar Pagamento'}
       </button>
     </form>
   );

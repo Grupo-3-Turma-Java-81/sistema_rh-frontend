@@ -6,6 +6,7 @@ import Login from "./pages/login/Login";
 import Cadastro from "./pages/cadastro/Cadastro";
 import HomeRH from "./pages/homeRH/HomeRH";
 import { AuthProvider } from "./contexts/AuthContext";
+import ListaPagamentos from './components/pagamentos/ListarPagamentos/ListarPagamentos';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="/home" element={<HomeRH />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/pagamentos" element={<ListaPagamentos />} />
             </Routes>
           </main>
           <Footer />

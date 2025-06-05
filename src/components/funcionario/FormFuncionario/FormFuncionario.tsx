@@ -1,12 +1,23 @@
-import React, { useEffect, useState, type ChangeEvent } from 'react';
+import React, {
+  useEffect,
+  useState,
+  type ChangeEvent,
+  useContext,
+} from 'react';
 import '../../../css/Form.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import type { Funcionario } from '../../../models/Funcionario';
 import { buscar, cadastrar, atualizar } from '../../../services/Service';
+import { AuthContext } from '../../../contexts/AuthContext';
 
 const FormFuncionario: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
+
+  const { usuario } = useContext(AuthContext);
+  const token = usuario.token;
+
+  console.log(token);
 
   const [funcionario, setFuncionario] = useState<Funcionario>({
     nome: '',
@@ -18,10 +29,13 @@ const FormFuncionario: React.FC = () => {
 
   useEffect(() => {
     if (id) {
-      buscar(`/funcionarios/${id}`, setFuncionario, {})
-        .catch(() => alert('Erro ao carregar funcionário'));
+      buscar(`/funcionarios/${id}`, setFuncionario, {
+        headers: {
+          Authorization: usuario.token,
+        },
+      }).catch(() => alert('Erro ao carregar funcionário'));
     }
-  }, [id]);
+  }, [id, token]);
 
   function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
     setFuncionario({
@@ -36,15 +50,24 @@ const FormFuncionario: React.FC = () => {
 
     try {
       if (id) {
-        await atualizar(`/funcionarios/${id}`, funcionario, setFuncionario, {});
+        await atualizar(`/funcionarios/${id}`, funcionario, setFuncionario, {
+          headers: {
+            Authorization:  usuario.token,
+          },
+        });
         alert('Funcionário atualizado!');
       } else {
-        await cadastrar('/funcionarios', funcionario, setFuncionario, {});
+        await cadastrar('/funcionarios', funcionario, setFuncionario, {
+          headers: {
+            Authorization:  usuario.token,
+          },
+        });
         alert('Funcionário cadastrado!');
       }
       navigate('/funcionarios');
-    } catch {
+    } catch (error) {
       alert('Erro ao salvar funcionário');
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
@@ -52,37 +75,37 @@ const FormFuncionario: React.FC = () => {
 
   return (
     <form onSubmit={enviarFormulario} className="form-container">
-  <input
-    type="text"
-    placeholder="Nome"
-    name="nome"
-    value={funcionario.nome}
-    onChange={atualizarEstado}
-    className="input-field"
-    required
-  />
-  <input
-    type="text"
-    placeholder="Cargo"
-    name="cargo"
-    value={funcionario.cargo}
-    onChange={atualizarEstado}
-    className="input-field"
-    required
-  />
-  <input
-    type="text"
-    placeholder="Departamento"
-    name="departamento"
-    value={funcionario.departamento}
-    onChange={atualizarEstado}
-    className="input-field"
-    required
-  />
-  <button type="submit" className="submit-button" disabled={isLoading}>
-    {isLoading ? 'Salvando...' : id ? 'Atualizar' : 'Cadastrar'}
-  </button>
-</form>
+      <input
+        type="text"
+        placeholder="Nome"
+        name="nome"
+        value={funcionario.nome}
+        onChange={atualizarEstado}
+        className="input-field"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Cargo"
+        name="cargo"
+        value={funcionario.cargo}
+        onChange={atualizarEstado}
+        className="input-field"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Departamento"
+        name="departamento"
+        value={funcionario.departamento}
+        onChange={atualizarEstado}
+        className="input-field"
+        required
+      />
+      <button type="submit" className="submit-button" disabled={isLoading}>
+        {isLoading ? 'Salvando...' : id ? 'Atualizar' : 'Cadastrar'}
+      </button>
+    </form>
   );
 };
 
