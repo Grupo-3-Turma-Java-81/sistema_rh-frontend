@@ -10,6 +10,7 @@ import SobreNos from "./pages/sobre-nos/SobreNos";
 import { AuthProvider } from "./contexts/AuthContext";
 import HomeEmpregado from "./pages/home/HomeEmpregado";
 import ListarPagamentos from "./components/pagamentos/listar-pagamentos/ListarPagamentos";
+import ListarFuncionarios from "./components/funcionarios/listar-funcionrios/ListarFuncionarios";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
               < Route path="/sobre-nos" element={< SobreNos />} />
               < Route path="/cadastro" element={< Cadastro />} />
               < Route path="/listar-pagamentos" element={< ListarPagamentos />} />
+              < Route path="/listar-funcionarios" element={< ListarFuncionarios />} />
             </Routes>
           </div>
 

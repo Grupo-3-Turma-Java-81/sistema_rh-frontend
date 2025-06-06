@@ -1,3 +1,5 @@
+import type { Funcionario } from "./Funcionario";
+
 export default interface Pagamento {
     id?: number;
     descricao: string;
@@ -7,4 +9,5 @@ export default interface Pagamento {
     bonus?: number;
     descontos?: number;
     valorFinal?: number;
+    funcionario?:  Funcionario | null;
 }

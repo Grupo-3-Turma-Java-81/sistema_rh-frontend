@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 
-import "./FormPagamentos.css";
+import './FormPagamentos.css';
 import { AuthContext } from "../../../contexts/AuthContext";
 import { atualizar, buscar, cadastrar } from "../../../services/Service";
 
@@ -9,9 +9,9 @@ const FormPagamento: React.FC = () => {
     const navigate = useNavigate();
 
     const { usuario } = useContext(AuthContext);
-    const token = usuario?.token ?? "";
-
     const { id } = useParams<{ id: string }>();
+
+    const token = usuario?.token ?? "";
 
     const [pagamento, setPagamento] = useState<{
         descricao: string;
@@ -34,6 +34,7 @@ const FormPagamento: React.FC = () => {
     });
 
     const [isLoading, setIsLoading] = useState(false);
+
 
     useEffect(() => {
         if (!token) {
@@ -95,7 +96,7 @@ const FormPagamento: React.FC = () => {
                 });
                 alert("Pagamento cadastrado com sucesso!");
             }
-            navigate("/pagamentos");
+            navigate("/home-rh");
         } catch (error) {
             alert("Erro ao salvar pagamento");
             console.error(error);
@@ -108,14 +109,13 @@ const FormPagamento: React.FC = () => {
         <form onSubmit={handleSubmit} className="form-container">
             <input
                 type="text"
-                name="nome=do-funcionario"
-                placeholder="Nome do Funcionário"
+                name="descricao"
+                placeholder="Descrição"
                 value={pagamento.descricao}
                 onChange={handleChange}
                 required
                 className="input-field"
             />
-
             <input
                 type="number"
                 name="salarioBaseHora"
@@ -125,7 +125,6 @@ const FormPagamento: React.FC = () => {
                 required
                 className="input-field"
             />
-
             <input
                 type="text"
                 name="mesReferencia"
@@ -135,7 +134,6 @@ const FormPagamento: React.FC = () => {
                 required
                 className="input-field"
             />
-
             <input
                 type="number"
                 name="horasTotais"
@@ -145,7 +143,6 @@ const FormPagamento: React.FC = () => {
                 required
                 className="input-field"
             />
-
             <input
                 type="number"
                 name="funcionarioId"
@@ -155,7 +152,6 @@ const FormPagamento: React.FC = () => {
                 required
                 className="input-field"
             />
-
             <button type="submit" disabled={isLoading} className="submit-button">
                 {isLoading ? 'Enviando...' : 'Cadastrar Pagamento'}
             </button>

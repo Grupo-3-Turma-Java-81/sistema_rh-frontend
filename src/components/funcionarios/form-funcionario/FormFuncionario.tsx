@@ -65,7 +65,7 @@ const FormFuncionario: React.FC = () => {
                 });
                 alert('Funcionário cadastrado!');
             }
-            navigate('/lista-funcionarios');
+            navigate('/listar-funcionarios');
         } catch (error) {
             alert('Erro ao salvar funcionário');
             console.error(error);

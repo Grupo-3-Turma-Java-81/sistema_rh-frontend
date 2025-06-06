@@ -47,7 +47,7 @@ const Navbar = () => {
                         </button>
                     </div>
 
-                    <Link className="user-info-button" onClick={logout} to={""}>
+                    <Link className="user-info-button" onClick={logout} to="/">
                         Logout
                     </Link>
 

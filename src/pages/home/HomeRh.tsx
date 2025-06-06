@@ -16,7 +16,6 @@ const Home: React.FC = () => {
 
     const { usuario } = useContext(AuthContext)
 
-
     useEffect(() => {
         if (usuario.token === "") {
             alert("Você precisa estar logado")
@@ -53,7 +52,11 @@ const Home: React.FC = () => {
             </div>
 
             <div className="max-w-4xl mx-auto mb-6">
-                <CardInfo />
+                <CardInfo
+                    nome={usuario.nome}
+                    usuario={usuario.usuario}
+                    foto={usuario.foto}
+                />
             </div>
 
             <div className="w-full max-w-4xl mx-auto bg-slate-50 border border-blue-200 rounded-xl shadow-sm overflow-hidden">

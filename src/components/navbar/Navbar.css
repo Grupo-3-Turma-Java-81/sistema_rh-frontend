@@ -9,6 +9,9 @@
     height: 70px;
     display: flex;
     align-items: center;
+    width: 100%;
+    z-index: 50;
+    background-color: #000;
 }
 
 .navbar-container {

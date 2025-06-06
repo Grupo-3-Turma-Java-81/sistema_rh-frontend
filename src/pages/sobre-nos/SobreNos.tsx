@@ -2,8 +2,8 @@ import { equipe } from "./Equipe";
 
 function SobreNos() {
     return (
-        <div className="min-h-screen bg-[#F2F2F2] p-8 pb-20">
-            <h1 className="text-4xl font-bold text-center mb-12 text-[#00070D] relative">
+        <div className="min-h-screen bg-[#F2F2F2] p-8 pt-32 pb-20">
+        <h1 className="text-4xl font-bold text-center mb-12 text-[#00070D] relative">
                 Sobre Nós
                 <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-[#11C5D9] mt-2"></div>
             </h1>
@@ -12,7 +12,7 @@ function SobreNos() {
                 <div className="flex flex-col gap-8 max-w-6xl w-full px-4 bg-[#00070D]/90 rounded-lg shadow-lg p-8 backdrop-blur-sm">
                     <div className="flex items-center gap-8">
                         <a
-                            href="https://github.com/Grupo-3-Turma-Java-81/sistema_rh-frontend"
+                            href="https://github.com/Grupo-3-Turma-Java-81/crm-frontend/tree/main"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="transition-transform hover:scale-105"
@@ -85,6 +85,7 @@ function SobreNos() {
                             <div className={`w-full md:w-1/4 ${index % 2 === 0 ? 'md:pl-4' : 'md:pr-4'}`}>
                                 <div className="relative">
                                     <div className="absolute -inset-3 bg-gradient-to-r from-[#11C5D9] to-[#818688] rounded-full blur-lg opacity-75 group-hover:opacity-100 transition duration-300"></div>
+
                                     <div className="relative aspect-square overflow-hidden rounded-full border-4 border-white shadow-xl">
                                         <img
                                             src={pessoa.imagem}
@@ -109,6 +110,7 @@ function SobreNos() {
                                     ? 'md:pl-6 md:border-l-2 md:border-[#11C5D9]/20'
                                     : 'md:pr-6 md:border-r-2 md:border-[#11C5D9]/20'
                                 }`}>
+
                                 <div className="bg-white rounded-xl p-6 shadow-lg relative overflow-hidden group-hover:shadow-xl transition-shadow duration-300">
                                     <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#11C5D9]/10 to-transparent rounded-bl-full"></div>
 

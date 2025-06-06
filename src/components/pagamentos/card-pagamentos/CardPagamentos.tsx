@@ -6,7 +6,7 @@ interface CardPagamentoProps {
 
 const CardPagamento: React.FC<CardPagamentoProps> = ({ pagamento }) => {
     const {
-        descricao,
+        funcionario,
         mesReferencia,
         salarioBaseHora,
         horasTotais,
@@ -15,6 +15,8 @@ const CardPagamento: React.FC<CardPagamentoProps> = ({ pagamento }) => {
         valorFinal = 0,
     } = pagamento;
 
+    const nomeFuncionario = funcionario?.nome ?? 'Nome não disponível';
+    
     const salarioBruto = salarioBaseHora * horasTotais;
 
     return (
@@ -26,7 +28,7 @@ const CardPagamento: React.FC<CardPagamentoProps> = ({ pagamento }) => {
         >
 
             <div className="grid grid-cols-7 gap-4 items-center text-center">
-                <span style={{ color: '#00070D' }} className="font-semibold">{descricao}</span>
+                <span style={{ color: '#00070D' }} className="font-semibold">{nomeFuncionario}</span>
                 <span style={{ color: '#81868C' }} className="text-sm">{mesReferencia}</span>
 
                 <p style={{ color: '#00070D' }} className="font-bold">R$ {salarioBruto.toFixed(2)}</p>

@@ -1,21 +1,20 @@
 import React from 'react';
 
-interface CardInfoProps {
+export interface CardInfoProps {
     nome?: string;
+    usuario?: string;
     departamento?: string;
     cargo?: string;
     dataAdmissao?: string;
     status?: 'ativo' | 'inativo';
-    fotoUrl?: string;
+    foto?: string;
 }
 
 const CardInfo: React.FC<CardInfoProps> = ({
     nome = '',
-    departamento = '',
-    cargo = '',
-    dataAdmissao = '',
+    usuario = '',
     status = 'ativo',
-    fotoUrl,
+    foto,
 }) => {
     return (
         <div className="bg-white border border-blue-200 rounded-lg shadow-sm overflow-hidden">
@@ -25,12 +24,12 @@ const CardInfo: React.FC<CardInfoProps> = ({
                 </h2>
             </div>
 
-            <div className="p-6 flex items-start space-x-6">
+            <div className="p-6 flex items-center space-x-6">
                 <div className="flex flex-col items-center space-y-2">
                     <div className="w-24 h-24 rounded-full border-2 border-[#11C5D9] p-1">
-                        {fotoUrl ? (
+                        {foto ? (
                             <img
-                                src={fotoUrl}
+                                src={foto}
                                 alt={`Foto de ${nome}`}
                                 className="w-full h-full rounded-full object-cover"
                             />
@@ -70,22 +69,13 @@ const CardInfo: React.FC<CardInfoProps> = ({
                         </div>
 
                         <div>
-                            <label className="block text-sm text-[#81868C]">Departamento</label>
-                            <p className="text-[#00070D] font-medium">{departamento || '-'}</p>
-                        </div>
-
-                        <div>
-                            <label className="block text-sm text-[#81868C]">Cargo</label>
-                            <p className="text-[#00070D] font-medium">{cargo || '-'}</p>
-                        </div>
-
-                        <div>
-                            <label className="block text-sm text-[#81868C]">Data de Admissão</label>
-                            <p className="text-[#00070D] font-medium">{dataAdmissao || '-'}</p>
+                            <label className="block text-sm text-[#81868C]">Email</label>
+                            <p className="text-[#00070D] font-medium">{usuario || '-'}</p>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };
