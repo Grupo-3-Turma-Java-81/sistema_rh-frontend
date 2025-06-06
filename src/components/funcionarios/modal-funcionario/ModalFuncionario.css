@@ -1,0 +1,8 @@
+.popup-content {
+    width: 100%;
+    max-width: 600px;
+    background: #f8fafc;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
